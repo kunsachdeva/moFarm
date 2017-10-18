@@ -19,7 +19,7 @@ class ListOrders extends Component {
         routes: [
             { key: '1', title: 'New' },
             { key: '2', title: 'Active' },
-            { key: '3', title: 'Completed' },
+            { key: '3', title: 'Ready for Pickup' },
         ],
     }
   }
@@ -85,7 +85,7 @@ class ListOrders extends Component {
         <View style={{margin:20}}>
             {this.state.orders.filter(o=>o.status>0 && o.status<99).map(function(order,i){
             return (
-        <TouchableWithoutFeedback key={i}>
+        <TouchableWithoutFeedback key={i} onPress={()=>this.props.navigation.navigate('orderProgress')}>
             <View onPress={()=>alert(0)} style={{marginBottom:20,flexDirection:'row',backgroundColor:'white',padding:10,borderRadius:10,width:width-40,elevation:5}}>
                 <View style={{width:80,alignContent:'center',borderRightColor:'whitesmoke',borderRightWidth:1,marginRight:5}}>
                     <Text style={{textAlign:'center',fontWeight:'800',fontSize:44}}>{new Date(order.dueDate).toDateString().split(' ')[2]}</Text>

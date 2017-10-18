@@ -65,7 +65,7 @@ class ListOrders extends Component {
                     sendSMS(farmer.telephone,'Step1',{date:this.state.order.dueDate,items:item.name})
                 }, this);
             }, this);
-            alert("Saved! Order moved from New to Active");
+            alert("Saved!");
             this.props.navigation.goBack();
             this.props.screenProps.progress.finish()
         })

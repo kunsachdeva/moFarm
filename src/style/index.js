@@ -10,9 +10,10 @@ var style={
         justifyContent:'center',
         alignItems:'center',
         flex:1,
-        backgroundColor:theme.primary,
-    }
+        backgroundColor: theme.primary,
+    },
 }
+
 
 export default style;
 export var width=width;

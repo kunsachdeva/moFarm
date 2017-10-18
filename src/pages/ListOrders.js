@@ -174,7 +174,7 @@ class ListOrders extends Component {
         return (
           <TabBar
             {...props}
-            scrollEnabled
+            // scrollEnabled
             style={{backgroundColor: theme.secondary}}
             tabWidth={100}
           />

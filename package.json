@@ -12,6 +12,7 @@
 		"leancloud-storage": "^3.1.1",
 		"react": "16.0.0-alpha.12",
 		"react-native": "0.48.1",
+		"react-native-button": "^2.1.0",
 		"react-native-multiple-choice": "0.0.8",
 		"react-native-multiple-select": "^0.2.1",
 		"react-native-progressbar": "^1.0.4",

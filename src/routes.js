@@ -3,7 +3,7 @@ import PlaceOrder from './pages/PlaceOrder'
 import ListOrders from './pages/ListOrders'
 import AddFarmer from './pages/AddFarmer'
 import AllocateOrder from './pages/AllocateOrder'
-import Homepage from './pages/AllocateOrder'
+import Homepage from './pages/Homepage'
 
 const routes={
     login: { screen: Login },

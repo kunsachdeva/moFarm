@@ -30,13 +30,17 @@ class ListOrders extends Component {
         .then(data=>{
             this.state.order=data
             for(var i=0;i<this.state.order.items.length;i++){
-                this.state.order.items[i]["farmers"]=[{farmerId:this.state.farmers[this.state.farmers.length-1].objectId,name:this.state.farmers[this.state.farmers.length-1].name,telephone:this.state.farmers[this.state.farmers.length-1].telephone}]
+                this.state.order.items[i]["farmers"]=[
+                {farmerId:this.state.farmers[this.state.farmers.length-1].objectId,
+                 name:this.state.farmers[this.state.farmers.length-1].name,
+                 telephone:this.state.farmers[this.state.farmers.length-1].telephone}]
             }
         this.setState(this.state)
+        
     })
     this.props.screenProps.progress.finish()
     })
-    .catch(data=>{})
+    .catch(data=>console.warn(JSON.stringify(data)))
   }
   processOrder(){
     var isValid=true
@@ -61,7 +65,7 @@ class ListOrders extends Component {
                     sendSMS(farmer.telephone,'Step1',{date:this.state.order.dueDate,items:item.name})
                 }, this);
             }, this);
-            alert("Saved!");
+            alert("Saved! Order moved from New to Active");
             this.props.navigation.goBack();
             this.props.screenProps.progress.finish()
         })

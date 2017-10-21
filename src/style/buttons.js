@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { StyleSheet } from 'react-native';
-import theme from './theme'
+import theme from './theme';
 
 const ButtonStyles = StyleSheet.create({
   button:{
-    padding: 20,
-    height: 70,
-    width: 350,
-    margin: 20,
+    padding: 0,
+    height: 20,
+    width: 200,
+    margin: 0,
     overflow: 'hidden',
     borderRadius: 10,
     backgroundColor: theme.accent,
     },
   buttonText: {
-    color: 'white',
+    color: 'white'
   }
 });
 

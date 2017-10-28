@@ -6,7 +6,6 @@ var {width, height}=Dimensions.get('window');
 
 const GeneralStyles = StyleSheet.create({
   box: {
-    flex: 1,
     marginBottom:20,
     margin: 5,
     flexDirection:'column',

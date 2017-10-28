@@ -62,7 +62,7 @@ class ListOrders extends Component {
         .then(()=>{
             this.state.order.items.forEach(function(item) {
                 item.farmers.forEach(function(farmer) {
-                    sendSMS(farmer.telephone,'Step1',{date:this.state.order.dueDate,items:item.name})
+                    sendSMS(farmer.telephone,'Step100',{date:this.state.order.dueDate,items:item.name})
                 }, this);
             }, this);
             alert("Saved!");

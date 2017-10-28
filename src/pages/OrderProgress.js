@@ -19,7 +19,7 @@ import {getOrderById,updateOrder} from '../actions/order'
 class OrderProgress extends Component {
   constructor(props) {
     super(props)
-    this.state={orders:[], order:{items:[]}, farmers:[]}
+    this.state={orders:[], order:{items:[], status: 0}, farmers:[]}
   }
 
   componentWillMount(){
@@ -32,6 +32,34 @@ class OrderProgress extends Component {
       this.props.screenProps.progress.finish()
     })
     .catch(data=>console.warn(JSON.stringify(data)))
+    // console.warn(JSON.stringify(this.state.order))
+  }
+
+  circleComplete() {
+    if (this.state.order.status > 0) {
+      return (
+        <View>
+        <View style={GeneralStyles.progressBoxCircleComplete}><Text style={{fontSize: 30, color: theme.secondary}}>&#10003;</Text></View>
+        <Text style={{fontSize: 12, color: theme.secondary}}>Accepted</Text>
+        </View>
+    )} else {
+      return (
+        <View>
+        <View style={GeneralStyles.progressBoxCircle}><Text style={{fontSize: 30, color: theme.secondary}}></Text></View>
+        <Text style={{fontSize: 12, color: theme.fadedGrey}}>Accepted</Text>
+        </View>
+    )}
+  }
+
+  sendReminder(farmer, i) {
+    // console.warn(JSON.stringify(farmer))
+    // console.warn(JSON.stringify(this.state.order.items[i].name + 'B'))
+    console.warn(JSON.stringify(farmer.telephone))
+    console.warn(JSON.stringify(this.state.order))
+    farmer["history"]=[{date: 'blah', time:'blah'}]
+    this.setState(this.state)
+    console.warn(JSON.stringify(this.state.order))
+    // sendSMS(farmer.telephone, 'Step 1', {date:this.state.order.dueDate,items:this.state.order.items[i].name})
   }
     
   render(){
@@ -53,9 +81,7 @@ class OrderProgress extends Component {
                       <Text style={GeneralStyles.subtitle}>{farmer.qty+ ' '+ item.unit}</Text>
                       </View>
                       <View style={GeneralStyles.progressBox}>
-                      <View style={GeneralStyles.progressBoxItem}>
-                      <View style={GeneralStyles.progressBoxCircleComplete}><Text style={{fontSize: 30, color: theme.secondary}}>&#10003;</Text></View>
-                      <Text style={{fontSize: 12, color: theme.secondary}}>Accecpted</Text>
+                      <View style={GeneralStyles.progressBoxItem}>{this.circleComplete()}
                       </View>
                       <View style={GeneralStyles.progressBoxItem}>
                       <View style={GeneralStyles.progressBoxCircle}></View>
@@ -92,7 +118,8 @@ class OrderProgress extends Component {
                       </View>
                       </View>
                       <Button containerStyle={GeneralStyles.button}
-                        style={GeneralStyles.buttonText}>Send Reminder
+                        style={GeneralStyles.buttonText}
+                        onPress={this.sendReminder(farmer, i)}>Send Reminder
                       </Button>
                       </View>
                       )})}

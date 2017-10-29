@@ -48,7 +48,8 @@ class PlaceOrder extends Component {
                 <Text onPress={()=>this.props.navigation.goBack()} style={{fontSize:30,color:'white',fontWeight:'500',marginLeft:10}}>{'←'}</Text>
                 <Text style={{fontSize:20,color:'white',fontWeight:'500',margin:10}}>Place Order</Text>
                 <TouchableOpacity 
-                    onPress={this.placeOrder.bind(this)}
+                    onPress={
+                        this.placeOrder.bind(this)}
                     style={{width:80,height:30,backgroundColor:theme.accent,borderRadius:5,position:'absolute',right:15,top:15,justifyContent:'center'}}>
                     <Text style={{color:'white',textAlign:'center',fontWeight:'700',fontSize:12}}>SUBMIT</Text>
                 </TouchableOpacity>

@@ -52,14 +52,16 @@ class OrderProgress extends Component {
   }
 
   sendReminder(farmer, i) {
-    // console.warn(JSON.stringify(farmer))
-    // console.warn(JSON.stringify(this.state.order.items[i].name + 'B'))
-    console.warn(JSON.stringify(farmer.telephone))
-    console.warn(JSON.stringify(this.state.order))
-    farmer["history"]=[{date: 'blah', time:'blah'}]
-    this.setState(this.state)
-    console.warn(JSON.stringify(this.state.order))
-    // sendSMS(farmer.telephone, 'Step 1', {date:this.state.order.dueDate,items:this.state.order.items[i].name})
+    console.warn(JSON.stringify(farmer))
+    // console.warn(JSON.stringify(this.state.order))
+    // let msgObject = {farmer}
+    // msgObject.farmer.messageHistory = {date: "blah", time: "blah", reminder: "blah"}
+    // console.warn(JSON.stringify(msgObject))
+    // this.setState({this.state.order})
+    // this.state.order.item[i].farmer[i]
+    // farmer["history"]=[{date: 'blah', time:'blah'}]
+    // this.setState(this.state)
+    sendSMS(farmer.telephone, 'Step 1', {date:this.state.order.dueDate,items:this.state.order.items[i].name})
   }
     
   render(){
@@ -73,8 +75,9 @@ class OrderProgress extends Component {
                   <Text style={GeneralStyles.title}>{item.name}</Text>
                   <Text style={GeneralStyles.title}>{item.qty+' '+item.unit}</Text>
                   </View>
-                  <View key={i}>{item.farmers.map((farmer, i)=>{
+                  <View>{item.farmers.map((farmer, f)=>{
                     return(
+                      <View key={f}>
                       <View style={{marginTop: 30}}>
                       <View style={GeneralStyles.horizontalBox}>
                       <Text style={GeneralStyles.subtitle}>{farmer.name}</Text>
@@ -106,23 +109,23 @@ class OrderProgress extends Component {
                       <Text>Time</Text>
                       <Text>Reply</Text>
                       </View>
-                      <View style={GeneralStyles.horizontalBox}>
-                      <Text>EXAMPLE</Text>
-                      <Text>EXAMPLE</Text>
-                      <Text>EXAMPLE</Text>
-                      </View>
-                      <View style={GeneralStyles.horizontalBox}>
-                      <Text>EXAMPLE</Text>
-                      <Text>EXAMPLE</Text>
-                      <Text>EXAMPLE</Text>
+                      <View>{farmer.messageHistory.map((message, m)=> {
+                        return(
+                          <View key={m} style={GeneralStyles.horizontalBox}>
+                          <Text>{message.date}</Text>
+                          <Text>{message.time}</Text>
+                          <Text>{message.reply}</Text>
+                          </View>)
+                      })}
+                        
                       </View>
                       </View>
                       <Button containerStyle={GeneralStyles.button}
                         style={GeneralStyles.buttonText}
-                        onPress={this.sendReminder(farmer, i)}>Send Reminder
+                        onPress={this.sendReminder(farmer, f)}>Send Reminder
                       </Button>
                       </View>
-                      )})}
+                      </View>)})}
                   </View>
                 </View>
               )})}

@@ -53,15 +53,8 @@ class OrderProgress extends Component {
 
   sendReminder(farmer, i) {
     console.warn(JSON.stringify(farmer))
-    // console.warn(JSON.stringify(this.state.order))
-    // let msgObject = {farmer}
-    // msgObject.farmer.messageHistory = {date: "blah", time: "blah", reminder: "blah"}
-    // console.warn(JSON.stringify(msgObject))
-    // this.setState({this.state.order})
-    // this.state.order.item[i].farmer[i]
-    // farmer["history"]=[{date: 'blah', time:'blah'}]
-    // this.setState(this.state)
-    sendSMS(farmer.telephone, 'Step 1', {date:this.state.order.dueDate,items:this.state.order.items[i].name})
+
+    sendSMS(farmer.telephone, 'Step1', {date:this.state.order.dueDate,items:'blah'})
   }
     
   render(){

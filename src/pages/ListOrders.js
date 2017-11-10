@@ -66,13 +66,17 @@ class ListOrders extends Component {
                         </View>
                         <View style={{justifyContent:'center',alignContent:'center',width:'100%'}}>
                         {order.items.map(function(item,i){
-                        return <View key={i} style={{flex:1,flexDirection:'row',marginVertical:10}}>
-                            <View style={{flex:0.5}}>
-                                <Text>{item.name}</Text>
-                            </View>
-                            <View style={{flex:0.5}}>
-                                <Text>{item.qty+' '+item.unit}</Text>
-                            </View>
+                        return <View key={i} style={{flex:1,flexDirection:'row', justifyContent: 'space-between',marginVertical:10, width: width-150}}>
+                                <View style={{flex:0.5, flexGrow: 3}}>
+                                    <Text>{item.name}</Text>
+                                </View>
+                                <View style={{flex:0.5, flexGrow: 1}}>
+                                    <Text>{item.qty+' '+item.unit}</Text>
+                                </View>
+                                <View style={GeneralStyles.progressBoxItem}>
+                                    <View style={GeneralStyles.progressBoxCircle}></View>
+                                    <Text style={{fontSize: 12, color: theme.fadedGrey, textAlign: 'center'}}>Not yet allocated</Text>
+                                </View>
                         </View>
                         })}
                         </View>

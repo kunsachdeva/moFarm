@@ -5,6 +5,7 @@ import AddFarmer from './pages/AddFarmer'
 import AllocateOrder from './pages/AllocateOrder'
 import Homepage from './pages/Homepage'
 import OrderProgress from './pages/OrderProgress'
+import ListFarmers from './pages/ListFarmers'
 
 const routes={
     login: { screen: Login },
@@ -14,6 +15,7 @@ const routes={
     addFarmer: { screen: AddFarmer },
     homepage: {screen: Homepage},
     orderProgress: {screen: OrderProgress},
+    listFarmers: {screen: ListFarmers}
 }
 
 export default routes

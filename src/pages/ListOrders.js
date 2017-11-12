@@ -7,8 +7,10 @@ import theme from '../style/theme';
 import style,{height,width} from '../style';
 import quantities from '../constants/quantities'
 import {getAllOrders} from '../actions/order'
+import {getAllFarmers} from '../actions/farmer'
 import { TabViewAnimated, TabBar } from 'react-native-tab-view';
 import GeneralStyles from '../style/general';
+import Button from 'react-native-button';
 //TODO get products from DB
 
 class ListOrders extends Component {
@@ -16,6 +18,7 @@ class ListOrders extends Component {
       super(props)
       this.state={
         orders:[],
+        farmers: [],
         index: 0,
         routes: [
             { key: '1', title: 'New' },
@@ -34,11 +37,19 @@ class ListOrders extends Component {
         this.setState(this.state)
         this.props.screenProps.progress.finish()
     })
-    .catch(data=>alert(data))
+    .catch(data=>alert(data));
+
+    getAllFarmers.then(data=>{
+        this.state.farmers=data
+        this.setState(this.state)
+    })
   }
+
+
     _handleChangeTab = (index) => {
         this.setState({ index });
     };
+
     getStatusText(status){
         switch(status){
             case 1:return 'Waiting for farmers';
@@ -196,6 +207,11 @@ class ListOrders extends Component {
             <View style={{height:50,width,backgroundColor:theme.secondary,flexDirection:'row'}}>
                 <Text onPress={()=>this.props.navigation.goBack()} style={{fontSize:30,color:'white',fontWeight:'500',marginLeft:10}}>{'←'}</Text>
                 <Text style={{fontSize:20,color:'white',fontWeight:'500',margin:10}}>Orders</Text>
+                <TouchableOpacity 
+                    onPress={()=> this.props.navigation.navigate('listFarmers', {farmers: this.state.farmers})}
+                    style={{width:100,height:30,backgroundColor:theme.accent,borderRadius:5, margin: 15, marginLeft:25, justifyContent: 'center'}}>
+                    <Text style={{color:'white',textAlign:'center',fontWeight:'700',fontSize:12}}>FARMERS LIST</Text>
+                </TouchableOpacity>
                 <TouchableOpacity 
                     onPress={this.addFarmer.bind(this)}
                     style={{width:100,height:30,backgroundColor:theme.accent,borderRadius:5,position:'absolute',right:15,top:15,justifyContent:'center'}}>

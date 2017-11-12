@@ -54,13 +54,17 @@ class OrderProgress extends Component {
   sendReminder(farmer, i) {
     console.warn(JSON.stringify(farmer))
 
-    sendSMS(farmer.telephone, 'Step1', {date:this.state.order.dueDate,items:'blah'})
+    // sendSMS(farmer.telephone, 'Step1', {date:this.state.order.dueDate,items:'blah'})
   }
     
   render(){
     return(
     <ScrollView>
-      <View style={style.container}>
+      <View style={{height:50,width,backgroundColor:theme.secondary,flexDirection:'row'}}>
+          <Text onPress={()=>this.props.navigation.goBack()} style={{fontSize:30,color:'white',fontWeight:'500',marginLeft:10}}>{'←'}</Text>
+          <Text style={{fontSize:20,color:'white',fontWeight:'500',margin:10}}>Active Orders</Text>
+        </View>
+        <View style={style.container}>
       <View style={{margin:20}}>{this.state.order.items.map((item,i)=>{
             return (
               <View key={i} style={GeneralStyles.box}>
